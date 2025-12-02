@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b08daclqpi8hh"]
+
+[ext_resource type="Script" uid="uid://dy5thqlftc6wm" path="res://Src/Enemies/bloon.gd" id="1_qmtwc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ife6f"]
+albedo_color = Color(1, 0.24705882, 0.1882353, 1)
+metallic = 0.45
+roughness = 0.25
+rim_tint = 0.57
+
+[sub_resource type="SphereMesh" id="SphereMesh_ife6f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ife6f"]
+
+[node name="Bloon" type="Area3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_qmtwc")
+
+[node name="BloonModel" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ife6f")
+mesh = SubResource("SphereMesh_ife6f")
+
+[node name="BloonCollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ife6f")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

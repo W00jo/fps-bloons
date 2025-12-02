@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://baib0xm8pa7yc"]
+
+[ext_resource type="Script" uid="uid://c4t4ruskbsmbi" path="res://Src/Levels/main.gd" id="1_hlxg1"]
+[ext_resource type="PackedScene" uid="uid://l6nqbmneattj" path="res://Src/Player/player.tscn" id="1_lab47"]
+[ext_resource type="PackedScene" uid="uid://b08daclqpi8hh" path="res://Src/Enemies/bloon.tscn" id="2_q70kw"]
+[ext_resource type="Texture2D" uid="uid://n3rq6by6cp16" path="res://Shared/Sprites/crosshair.png" id="3_v00q4"]
+[ext_resource type="Texture2D" uid="uid://cssloq2qhqedh" path="res://Shared/Sprites/hitmarker.png" id="4_s3drx"]
+[ext_resource type="FontFile" uid="uid://cl0jfa4dxohou" path="res://Shared/SuperCaramelFont/SuperCaramel-5yBza.ttf" id="5_v00q4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lab47"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_q70kw"]
+sky_material = SubResource("ProceduralSkyMaterial_lab47")
+
+[sub_resource type="Environment" id="Environment_eyau8"]
+background_mode = 2
+sky = SubResource("Sky_q70kw")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lab47"]
+vertices = PackedVector3Array(-7, 0.49, -7, -7, 0.49, 7, 7, 0.49, 7, 7, 0.49, -7)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3drx"]
+font = ExtResource("5_v00q4")
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_hlxg1")
+score = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eyau8")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="PlayableRegion" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_lab47")
+
+[node name="GreyboxGround" type="CSGBox3D" parent="PlayableRegion"]
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(15, 0.02, 15)
+
+[node name="Player" parent="." instance=ExtResource("1_lab47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5968356, 1.0100002, 4.6838846)
+
+[node name="HUD2" type="CanvasLayer" parent="Player"]
+
+[node name="Crosshair" type="TextureRect" parent="Player/HUD2"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_v00q4")
+
+[node name="Hitmarker" type="TextureRect" parent="Player/HUD2"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_s3drx")
+
+[node name="ScoreBackground" type="Panel" parent="Player/HUD2"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreIndicator" type="Label" parent="Player/HUD2"]
+offset_right = 40.0
+offset_bottom = 40.0
+label_settings = SubResource("LabelSettings_s3drx")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Bloon" parent="Enemies" instance=ExtResource("2_q70kw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1349902, 1.4044065, -3.672637)
