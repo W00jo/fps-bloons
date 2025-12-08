@@ -53,6 +53,7 @@ texture = ExtResource("3_v00q4")
 
 [node name="Hitmarker" type="TextureRect" parent="Player/HUD"]
 visible = false
+modulate = Color(1.4631748e-05, 0.93281424, 0.93373716, 1)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_s3drx")

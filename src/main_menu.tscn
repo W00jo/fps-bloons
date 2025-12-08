@@ -24,29 +24,38 @@ texture = ExtResource("1_guuao")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 136.0
-offset_top = 662.0
-offset_right = 346.0
-offset_bottom = 778.0
-scale = Vector2(2.5, 2.5)
+offset_top = 609.0
+offset_right = 975.0
+offset_bottom = 953.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_bq8pk")
+theme_override_font_sizes/font_size = 64
 text = "Bloons Lectures Defender"
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bq8pk")
+theme_override_font_sizes/font_size = 64
 text = "Start"
 
 [node name="EasterEgg" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bq8pk")
+theme_override_font_sizes/font_size = 64
 text = "Click me!"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bq8pk")
+theme_override_font_sizes/font_size = 64
 text = "Exit"
 
 [node name="MenuTheme" type="AudioStreamPlayer" parent="."]
