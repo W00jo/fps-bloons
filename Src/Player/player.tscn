@@ -1,20 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://l6nqbmneattj"]
+[gd_scene load_steps=5 format=3 uid="uid://l6nqbmneattj"]
 
-[ext_resource type="Script" uid="uid://cx744hq55wvwv" path="res://Src/Player/player.gd" id="1_b5us1"]
+[ext_resource type="Script" uid="uid://cx744hq55wvwv" path="res://src/player/player.gd" id="1_b5us1"]
+[ext_resource type="PackedScene" uid="uid://cmsjcpcebg8qv" path="res://src/weapons/dart.tscn" id="2_rxibo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nms7q"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i1ivj"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b5us1"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["monkeys"]]
 collision_mask = 7
 script = ExtResource("1_b5us1")
 
 [node name="PlayerModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.66755533, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_nms7q")
 
-[node name="PlayerCollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_i1ivj")
+[node name="PlayerCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.66755533, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_b5us1")
 
-[node name="PlayerCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63156724, 0)
+[node name="PlayerHead" type="Node3D" parent="."]
+
+[node name="Dart" parent="PlayerHead" instance=ExtResource("2_rxibo")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 0.99999994, 0, -8.742278e-08, 0, -0.99999994, 0.5, 0, -0.67551816)
+
+[node name="DartModel" parent="PlayerHead/Dart" index="0"]
+transform = Transform3D(1, -1.24153186e-08, -8.907577e-10, 1.2415139e-08, 0.98972887, 0.14295714, -8.932517e-10, -0.14295714, 0.98972887, 0, 0, 0)
+
+[node name="RayCast3D" parent="PlayerHead/Dart" index="2"]
+transform = Transform3D(0.9848078, 0.17364818, -1.5771278e-09, -0.17186458, 0.9746926, 0.14295714, 0.024824249, -0.14078529, 0.98972887, -2.9802322e-08, 0.018181255, 0.2547325)
+
+[node name="PlayerCamera" type="Camera3D" parent="PlayerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33380115, -0.07037908)
+
+[editable path="PlayerHead/Dart"]

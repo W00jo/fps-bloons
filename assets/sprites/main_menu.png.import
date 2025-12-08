@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cssloq2qhqedh"
-path="res://.godot/imported/hitmarker.png-d2deb76b294d88e988e805907bca6bf7.ctex"
+uid="uid://b8xpbjlk84ii5"
+path="res://.godot/imported/main_menu.png-bd11a6b84a244ebcebc5722a7972e6f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shared/Sprites/hitmarker.png"
-dest_files=["res://.godot/imported/hitmarker.png-d2deb76b294d88e988e805907bca6bf7.ctex"]
+source_file="res://assets/sprites/main_menu.png"
+dest_files=["res://.godot/imported/main_menu.png-bd11a6b84a244ebcebc5722a7972e6f6.ctex"]
 
 [params]
 

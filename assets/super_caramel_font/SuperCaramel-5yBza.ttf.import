@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cl0jfa4dxohou"
-path="res://.godot/imported/SuperCaramel-5yBza.ttf-f93e5232317c5e826198f9720df72a7a.fontdata"
+path="res://.godot/imported/SuperCaramel-5yBza.ttf-3c5b7c9fed2560797e53b9f918ce9c5e.fontdata"
 
 [deps]
 
-source_file="res://Shared/SuperCaramelFont/SuperCaramel-5yBza.ttf"
-dest_files=["res://.godot/imported/SuperCaramel-5yBza.ttf-f93e5232317c5e826198f9720df72a7a.fontdata"]
+source_file="res://assets/super_caramel_font/SuperCaramel-5yBza.ttf"
+dest_files=["res://.godot/imported/SuperCaramel-5yBza.ttf-3c5b7c9fed2560797e53b9f918ce9c5e.fontdata"]
 
 [params]
 

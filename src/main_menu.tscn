@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsaf625dam6ks"]
+
+[ext_resource type="Script" uid="uid://dsvagqvn3j67e" path="res://src/main_menu.gd" id="1_d3tmf"]
+[ext_resource type="Texture2D" uid="uid://b8xpbjlk84ii5" path="res://assets/sprites/main_menu.png" id="1_guuao"]
+[ext_resource type="FontFile" uid="uid://cl0jfa4dxohou" path="res://assets/super_caramel_font/SuperCaramel-5yBza.ttf" id="2_bq8pk"]
+[ext_resource type="AudioStream" uid="uid://1ud0isxi6rm" path="res://assets/soundtrack/menu_theme.mp3" id="4_1wfgh"]
+[ext_resource type="AudioStream" uid="uid://b8k2vrq8br7t7" path="res://assets/sfx/pop.mp3" id="5_1wfgh"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d3tmf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_guuao")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 662.0
+offset_right = 346.0
+offset_bottom = 778.0
+scale = Vector2(2.5, 2.5)
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bq8pk")
+text = "Bloons Lectures Defender"
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bq8pk")
+text = "Start"
+
+[node name="EasterEgg" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bq8pk")
+text = "Click me!"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bq8pk")
+text = "Exit"
+
+[node name="MenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1wfgh")
+
+[node name="PopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1wfgh")
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/EasterEgg" to="." method="_on_easter_egg_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

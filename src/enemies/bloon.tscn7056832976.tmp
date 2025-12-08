@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b08daclqpi8hh"]
 
 [ext_resource type="Script" uid="uid://dy5thqlftc6wm" path="res://src/enemies/bloon.gd" id="1_qmtwc"]
-[ext_resource type="AudioStream" uid="uid://b8k2vrq8br7t7" path="res://assets/sfx/pop.mp3" id="2_t03bi"]
+[ext_resource type="AudioStream" uid="uid://dhgi740da77km" path="res://assets/sfx/btd_bloon_pop.mp3" id="2_t03bi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ife6f"]
 albedo_color = Color(1, 0.24705882, 0.1882353, 1)
