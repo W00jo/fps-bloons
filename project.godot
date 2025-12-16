@@ -64,7 +64,7 @@ jump={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://shared/translations.en.translation", "res://shared/translations.pl.translation")
+locale/translations=PackedStringArray("res://config/translations.en.translation", "res://config/translations.pl.translation")
 
 [layer_names]
 

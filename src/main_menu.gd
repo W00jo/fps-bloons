@@ -7,7 +7,7 @@ extends Control
 @onready var pop_sound = $PopSound
 
 func _ready() -> void:
-	# Odtwarza muzykę menu w pętli
+	# Odtwarza muzykę menu
 	menu_theme.play()
 
 func _on_start_pressed() -> void:
