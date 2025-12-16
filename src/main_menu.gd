@@ -7,7 +7,7 @@ extends Control
 @onready var pop_sound = $PopSound
 
 func _ready() -> void:
-	# Play menu theme on loop
+	# Odtwarza muzykę menu w pętli
 	menu_theme.play()
 
 func _on_start_pressed() -> void:
@@ -16,7 +16,16 @@ func _on_start_pressed() -> void:
 
 func _on_easter_egg_pressed() -> void:
 	pop_sound.play()
-	print("Easter egg activated!")
+	print("Easter egg")
+
+## Przełącza język między angielskim a polskim
+func _on_language_pressed() -> void:
+	pop_sound.play()
+	var current_locale = TranslationServer.get_locale()
+	if current_locale == "en":
+		TranslationServer.set_locale("pl")
+	else:
+		TranslationServer.set_locale("en")
 
 func _on_exit_pressed() -> void:
 	pop_sound.play()

@@ -62,6 +62,10 @@ jump={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://shared/translations.en.translation", "res://shared/translations.pl.translation")
+
 [layer_names]
 
 3d_physics/layer_1="Player"

@@ -80,7 +80,8 @@ offset_right = 36.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Przebito:"
+text = "SCORE_POPPED
+"
 label_settings = SubResource("LabelSettings_s3drx")
 horizontal_alignment = 1
 vertical_alignment = 1

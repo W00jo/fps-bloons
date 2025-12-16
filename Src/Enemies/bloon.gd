@@ -18,8 +18,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not is_being_poped:
+		# Powolna rotacja balona
 		rotate_y(0.01)
 
+## Obsługuje trafienie balona = odejmuje HP lub powiększa balon
 func _hit():
 	if is_being_poped:
 		return
@@ -27,6 +29,7 @@ func _hit():
 	bloon_hitpoints -= 1
 	
 	if bloon_hitpoints <= 0:
+		# Balon przebity = odtwarza dźwięk i aktualizuje wynik
 		is_being_poped = true
 		pop_sound.play()
 		var main = get_tree().root.get_node("Main")
@@ -34,10 +37,10 @@ func _hit():
 			main._score_update(pop_points)
 		
 		mesh.visible = false
-		
 		$BloonCollisionShape.disabled = true
 		
 		await pop_sound.finished
 		queue_free()
 	else:
+		# Balon powiększa się po trafieniu, ale tego nie widać xd
 		scale += Vector3.ONE * bloon_inflation

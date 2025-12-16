@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+# Zmienne dt. ruchu i kontroli
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
 @export var MOUSE_SENSITIVITY = 0.003
@@ -8,18 +9,22 @@ var projectile = load("res://src/weapons/projectile.tscn")
 var instance
 
 @onready var camera = $PlayerHead/PlayerCamera
-@onready var dart_anim = $PlayerHead/Dart/ThrowAnimation
-@onready var dart_tip = $PlayerHead/Dart/RayCast3D
+@onready var dart_anim = $PlayerHead/PlayerCamera/Dart/ThrowAnimation
+@onready var dart_tip = $PlayerHead/PlayerCamera/Dart/RayCast3D
 
 func _ready():
+	# Przechwytuje mysz dla kontroli kamery
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+## Obsługa wejścia myszy - rotacja gracza i kamery
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		# Obrót gracza w poziomie (yaw)
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		
+		# Obrót kamery w pionie (pitch)
 		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
-		
+		# Ograniczenie kąta kamery do góry/dołu
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
 func _physics_process(delta: float) -> void:
@@ -33,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	# Ruch gracza na podstawie wejścia WASD
 	var input_dir := Input.get_vector("move_left", "move_right", "move_backward", "move_forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -42,10 +48,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	# Throwing
+	# Rzucanie lotkami - spawning pocisków
 	if Input.is_action_pressed("throw"):
 		if !dart_anim.is_playing():
 			dart_anim.play("throw")
+			# Tworzy pocisk w pozycji końca lotki
 			instance = projectile.instantiate()
 			instance.position = dart_tip.global_position
 			instance.transform.basis = dart_tip.global_transform.basis

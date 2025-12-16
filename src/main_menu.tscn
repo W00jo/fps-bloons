@@ -25,39 +25,45 @@ texture = ExtResource("1_guuao")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 464.0
+offset_top = 392.0
 offset_right = 863.0
-offset_bottom = 808.0
+offset_bottom = 825.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_bq8pk")
 theme_override_font_sizes/font_size = 64
-text = "Bloons Lectures Defender"
+text = "GAME_TITLE"
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bq8pk")
 theme_override_font_sizes/font_size = 64
-text = "Start"
+text = "START"
+
+[node name="Language" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bq8pk")
+theme_override_font_sizes/font_size = 64
+text = "CHANGE_LANGUAGE"
 
 [node name="EasterEgg" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bq8pk")
 theme_override_font_sizes/font_size = 64
-text = "Click me!"
+text = "EASTER_EGG"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bq8pk")
 theme_override_font_sizes/font_size = 64
-text = "Exit"
+text = "EXIT"
 
 [node name="GameVersion" type="Label" parent="."]
 layout_mode = 1
@@ -74,7 +80,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_bq8pk")
 theme_override_font_sizes/font_size = 32
-text = "v. 0.0.1."
+text = "VERSION"
 
 [node name="MenuTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1wfgh")
@@ -83,5 +89,6 @@ stream = ExtResource("4_1wfgh")
 stream = ExtResource("5_1wfgh")
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Language" to="." method="_on_language_pressed"]
 [connection signal="pressed" from="VBoxContainer/EasterEgg" to="." method="_on_easter_egg_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

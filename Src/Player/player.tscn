@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://l6nqbmneattj"]
+[gd_scene load_steps=6 format=3 uid="uid://l6nqbmneattj"]
 
 [ext_resource type="Script" uid="uid://cx744hq55wvwv" path="res://src/player/player.gd" id="1_b5us1"]
 [ext_resource type="PackedScene" uid="uid://cmsjcpcebg8qv" path="res://src/weapons/dart.tscn" id="2_rxibo"]
+[ext_resource type="Texture2D" uid="uid://5kowngv5y4jd" path="res://assets/sprites/monkey_face.jpg" id="3_mf2ua"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nms7q"]
 
@@ -21,16 +22,23 @@ shape = SubResource("CapsuleShape3D_b5us1")
 
 [node name="PlayerHead" type="Node3D" parent="."]
 
-[node name="Dart" parent="PlayerHead" instance=ExtResource("2_rxibo")]
-transform = Transform3D(-1, 0, 8.742277e-08, 0, 0.99999994, 0, -8.742278e-08, 0, -0.99999994, 0.5, 0, -0.67551816)
-
-[node name="DartModel" parent="PlayerHead/Dart" index="0"]
-transform = Transform3D(1, -1.24153186e-08, -8.907577e-10, 1.2415139e-08, 0.98972887, 0.14295714, -8.932517e-10, -0.14295714, 0.98972887, 0, 0, 0)
-
-[node name="RayCast3D" parent="PlayerHead/Dart" index="2"]
-transform = Transform3D(0.9848078, 0.17364818, -1.5771278e-09, -0.17186458, 0.9746926, 0.14295714, 0.024824249, -0.14078529, 0.98972887, -2.9802322e-08, 0.018181255, 0.2547325)
-
 [node name="PlayerCamera" type="Camera3D" parent="PlayerHead"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33380115, -0.07037908)
+cull_mask = 1048063
 
-[editable path="PlayerHead/Dart"]
+[node name="Dart" parent="PlayerHead/PlayerCamera" instance=ExtResource("2_rxibo")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 0.99999994, 0, -8.742278e-08, 0, -0.99999994, 0.5, -0.33380115, -0.6051491)
+
+[node name="DartModel" parent="PlayerHead/PlayerCamera/Dart" index="0"]
+transform = Transform3D(1, -1.24153186e-08, -8.907577e-10, 1.2415139e-08, 0.98972887, 0.14295714, -8.932517e-10, -0.14295714, 0.98972887, 0, 0, 0)
+
+[node name="RayCast3D" parent="PlayerHead/PlayerCamera/Dart" index="2"]
+transform = Transform3D(0.9848078, 0.17364818, -1.5771278e-09, -0.17186458, 0.9746926, 0.14295714, 0.024824249, -0.14078529, 0.98972887, -2.9802322e-08, 0.018181255, 0.2547325)
+
+[node name="MonkeyFace" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40905333, -0.5262816)
+layers = 512
+pixel_size = 0.0005
+texture = ExtResource("3_mf2ua")
+
+[editable path="PlayerHead/PlayerCamera/Dart"]

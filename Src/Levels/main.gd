@@ -18,6 +18,7 @@ var bloon_scene = preload("res://src/enemies/bloon.tscn")
 var current_bloon_count : int = 0
 
 func _ready():
+	# Ustawia celownik na środku ekranu
 	crosshair.position.x = get_viewport().size.x / 2 - 32
 	crosshair.position.y = get_viewport().size.y / 2 - 32
 	hitmarker.position.x = get_viewport().size.x / 2 - 32
@@ -28,32 +29,35 @@ func _ready():
 	
 	current_bloon_count = enemies_node.get_child_count()
 	
+	# Inicjalizuje wyświetlanie wyniku
+	score_indicator.text = tr("SCORE_POPPED") + " " + str(score)
+	
 	_start_music_with_fade()
 	
 ## Muzyka zacyzna grać przy "wejściu" na scenę
 func _start_music_with_fade() -> void:
-	# Start at silent
+	# Zaczyna z wytłumieniem
 	main_theme.volume_db = -80.0
 	main_theme.play()
-	
-	# Fade in
-	var target_volume = -2.0  # The volume set in the scene
+	var target_volume = -2.0
 	var tween = create_tween()
 	tween.tween_property(main_theme, "volume_db", target_volume, fade_in_duration)
 	
-	# Loop when finished
+	# Loop
 	main_theme.finished.connect(_on_music_finished)
 	
 func _on_music_finished() -> void:
 	main_theme.play()
 	
+## Aktualizuje wynik po przebiciu balona i spawnuje nowego
 func _score_update(bloon_points) -> void:
 	score += bloon_points
 	print(score)
-	score_indicator.text = str("Przebito: ", score)
+	score_indicator.text = tr("SCORE_POPPED") + " " + str(score)
 	
 	_show_hitmarker()
 	
+	# Zmniejsza licznik i spawnuje nowego balona po opóźnieniu
 	current_bloon_count -= 1
 	await get_tree().create_timer(respawn_delay).timeout
 	_spawn_bloons()
@@ -68,6 +72,7 @@ func _show_hitmarker() -> void:
 	await tween.finished
 	hitmarker.visible = false
 	
+## Spawnuje nowego balona w losowej pozycji w obszarze gry
 func _spawn_bloons():
 	if current_bloon_count >= max_bloons:
 		return
@@ -79,6 +84,7 @@ func _spawn_bloons():
 	enemies_node.add_child(bloon)
 	current_bloon_count += 1
 	
+## Zwraca losową pozycję w granicach obszaru gry
 func get_random_position_in_region() -> Vector3:
 	var ground_size = Vector3(15, 0, 15)
 	var ground_position = playable_region.position
